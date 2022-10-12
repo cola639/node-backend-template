@@ -1,13 +1,13 @@
-const config = require("config");
+const config = require('config')
 
 function admin(req, res, next) {
   // 401 Unauthorized
   // 403 Forbidden
-  if (!config.get("requiresAuth")) return next();
+  if (!config.get('requiresAuth')) return next()
 
-  if (!req.user.isAdmin) return res.status(403).send("Access denied.");
+  if (!req.user.isAdmin) return res.status(403).send('Access denied.')
 
-  next();
+  next()
 }
 
-module.exports = admin;
+module.exports = admin

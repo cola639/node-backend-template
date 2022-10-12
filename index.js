@@ -12,10 +12,10 @@ const liked = require('./routes/liked')
 const github = require('./routes/github')
 const upload = require('./routes/upload')
 
-mongoose
-  .connect('mongodb://localhost:27017') // mongodb://test:123@107.182.25.151/mybase?authSource=admin
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch((err) => console.error('Could not connect to MongoDB...'))
+// mongoose
+//   .connect('mongodb://localhost:27017') // mongodb://test:123@107.182.25.151/mybase?authSource=admin
+//   .then(() => console.log('Connected to MongoDB...'))
+//   .catch((err) => console.error('Could not connect to MongoDB...'))
 
 app.use(cors()) // 方法cors中间件跨域问题
 app.use(express.json({ limit: '10000kb' })) // solve big file

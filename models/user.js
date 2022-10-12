@@ -1,50 +1,50 @@
-const config = require("config");
-const jwt = require("jsonwebtoken");
-const Joi = require("joi");
-const mongoose = require("mongoose");
+const config = require('config')
+const jwt = require('jsonwebtoken')
+const Joi = require('joi')
+const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
   githubId: {
     type: Number,
-    default: "",
+    default: ''
   },
   name: {
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 50,
+    maxlength: 50
   },
   email: {
     type: String,
     required: true,
     minlength: 5,
     maxlength: 255,
-    unique: true,
+    unique: true
   },
   password: {
     type: String,
     required: true,
     minlength: 5,
-    maxlength: 1024,
+    maxlength: 1024
   },
   avatar: {
     type: String,
-    default: "",
+    default: ''
   },
 
   agreement: {
     type: Boolean,
-    default: true,
+    default: true
   },
   isAdmin: {
     type: Boolean,
-    default: false,
+    default: false
   },
   isAuthor: {
     type: Boolean,
-    default: true,
-  },
-});
+    default: true
+  }
+})
 
 userSchema.methods.generateAuthToken = function () {
   //jwt.sign(payload,jwtPrivateKey)
@@ -55,25 +55,25 @@ userSchema.methods.generateAuthToken = function () {
       email: this.email,
       avatar: this.avatar,
       isAdmin: this.isAdmin,
-      isAuthor: this.isAuthor,
+      isAuthor: this.isAuthor
     },
-    config.get("jwtPrivateKey")
-  );
-  return token;
-};
+    config.get('jwtPrivateKey')
+  )
+  return token
+}
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema)
 
 function validateUser(user) {
   const schema = {
     name: Joi.string().min(2).max(50).required(),
     email: Joi.string().min(5).max(255).required().email(),
-    password: Joi.string().min(5).max(255).required(),
-  };
+    password: Joi.string().min(5).max(255).required()
+  }
 
-  return Joi.validate(user, schema);
+  return Joi.validate(user, schema)
 }
 
-exports.userSchema = userSchema;
-exports.User = User;
-exports.validate = validateUser;
+exports.userSchema = userSchema
+exports.User = User
+exports.validate = validateUser

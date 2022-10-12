@@ -1,8 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 module.exports = function (req, res, next) {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id))
-    return res.status(404).send("无效文章ID");
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('无效文章ID')
 
-  next();
-};
+  next()
+}

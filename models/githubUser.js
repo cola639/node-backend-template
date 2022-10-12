@@ -1,41 +1,41 @@
-const config = require("config");
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
+const config = require('config')
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 
 const githubUserSchema = new mongoose.Schema({
   githubId: {
     type: Number,
-    required: true,
+    required: true
   },
   name: {
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 50,
+    maxlength: 50
   },
   password: {
     type: String,
     required: true,
     minlength: 5,
-    maxlength: 1024,
+    maxlength: 1024
   },
   avatar: {
     type: String,
-    required: true,
+    required: true
   },
   agreement: {
     type: Boolean,
-    default: true,
+    default: true
   },
   isAdmin: {
     type: Boolean,
-    default: false,
+    default: false
   },
   isAuthor: {
     type: Boolean,
-    default: false,
-  },
-});
+    default: false
+  }
+})
 
 githubUserSchema.methods.generateAuthToken = function () {
   //jwt.sign(payload,jwtPrivateKey)
@@ -44,14 +44,14 @@ githubUserSchema.methods.generateAuthToken = function () {
       _id: this._id,
       name: this.name,
       isAdmin: this.isAdmin,
-      isAuthor: this.isAuthor,
+      isAuthor: this.isAuthor
     },
-    config.get("jwtPrivateKey")
-  );
-  return token;
-};
+    config.get('jwtPrivateKey')
+  )
+  return token
+}
 
-const GithubUser = mongoose.model("GithubUser", githubUserSchema);
+const GithubUser = mongoose.model('GithubUser', githubUserSchema)
 
-exports.githubUserSchema = githubUserSchema;
-exports.GithubUser = GithubUser;
+exports.githubUserSchema = githubUserSchema
+exports.GithubUser = GithubUser

@@ -1,49 +1,49 @@
-const Joi = require("joi");
-const mongoose = require("mongoose");
+const Joi = require('joi')
+const mongoose = require('mongoose')
 
 const Comment = mongoose.model(
-  "Comment",
+  'Comment',
   new mongoose.Schema({
     articleId: {
       type: String,
       required: true,
       trim: true,
       minlength: 5,
-      maxlength: 50,
+      maxlength: 50
     },
     comment_content: {
       type: String,
-      required: true,
+      required: true
     },
     comment_uid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User'
     },
     comment_datetime: {
       type: Date,
-      required: true,
+      required: true
     },
     comment_parent: {
       type: String,
-      required: true,
+      required: true
     },
     to_uid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+      ref: 'User'
+    }
   })
-);
+)
 
 function validateComment(comment) {
   const schema = {
     comment_content: Joi.string().required(),
     comment_uid: Joi.string().required(),
     comment_parent: Joi.string(),
-    to_uid: Joi.string(),
-  };
+    to_uid: Joi.string()
+  }
 
-  return Joi.validate(comment, schema);
+  return Joi.validate(comment, schema)
 }
 
-exports.Comment = Comment;
-exports.validateComment = validateComment;
+exports.Comment = Comment
+exports.validateComment = validateComment
