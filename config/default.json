@@ -1,0 +1,6 @@
+{
+  "jwtPrivateKey": "unsecureKey",
+  "db": "mongodb://test:123@107.182.25.151/mybase?authSource=admin",
+  "port": "3100",
+  "requiresAuth": true
+}
