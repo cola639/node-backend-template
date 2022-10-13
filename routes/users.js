@@ -52,9 +52,19 @@ router.delete('/:id', async (req, res) => {
   res.send('删除成功')
 })
 
-router.get('/green', async (req, res) => {
+router.get('/login', async (req, res) => {
   const users = {
-    sucessmsg: 'hellow '
+    code: 200,
+    sucessmsg: 'welcome login 超级大帅和'
+  }
+  res.send(users)
+})
+
+router.post('/info', async (req, res) => {
+  const users = {
+    code: 200,
+    name: '超级大帅和',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
   }
   res.send(users)
 })

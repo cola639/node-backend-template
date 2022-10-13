@@ -17,7 +17,7 @@ const upload = require('./routes/upload')
 //   .then(() => console.log('Connected to MongoDB...'))
 //   .catch((err) => console.error('Could not connect to MongoDB...'))
 
-app.use(cors()) // 方法cors中间件跨域问题
+app.use(cors()) // cors middleware
 app.use(express.json({ limit: '10000kb' })) // solve big file
 
 app.use('/static', express.static(path.join(__dirname, './public')))
